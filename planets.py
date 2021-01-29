@@ -1,10 +1,10 @@
-def rangeChecker(coord):
+def range_checker(coord):
     for x in coord:
         if x < -10000.00 or x > 10000.00:
             raise Exception("Sorry, your coordinates are out of range.")
 
 
-def calcDistance(start, end):
+def calc_distance(start, end):
     sumOfSquares = sum([(start[i] - end[i]) ** 2 for i in range(3)])
 
     return sumOfSquares ** 0.5
@@ -17,7 +17,7 @@ def translate(stringCoord):
     return coord
 
 
-def findPath(start, finish, stations):
+def find_path(start, finish, stations):
     if start == finish:
         return 0
 
@@ -27,14 +27,15 @@ def findPath(start, finish, stations):
         unseenStations = stations.copy()
         unseenStations.remove(station)
         distances.append(
-            max(calcDistance(start, station), findPath(station, finish, unseenStations))
+            max(calc_distance(start, station), find_path(
+                station, finish, unseenStations))
         )
 
     return min(distances)
 
 
 destCoord = translate(input())
-rangeChecker(destCoord)
+range_checker(destCoord)
 
 numStations = int(input())
 if numStations < 1 or numStations > 2000:
@@ -43,7 +44,7 @@ if numStations < 1 or numStations > 2000:
 stations = [destCoord]
 for i in range(numStations):
     stationCoord = translate(input())
-    rangeChecker(stationCoord)
+    range_checker(stationCoord)
     stations.append(stationCoord)
 
-print("{:.2f}".format(findPath((0, 0, 0), destCoord, stations)))
+print("{:.2f}".format(find_path((0, 0, 0), destCoord, stations)))
