@@ -27,9 +27,7 @@ def find_path(start, finish, stations):
         unseenStations = stations.copy()
         unseenStations.remove(station)
         distances.append(
-            max(calc_distance(start, station), find_path(
-                station, finish, unseenStations))
-        )
+            max(calc_distance(start, station), find_path(station, finish, unseenStations)))
 
     return min(distances)
 
